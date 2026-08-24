@@ -1,0 +1,51 @@
+// Roster de responsables — contenido propio de la landing, no viene del endpoint (BRIEF §2.3).
+const RESPONSABLES = [
+  { nombre: "Johan Toro", rol: "Coordinación general — Logística de Asistencia y Albergue", ubicacion: "México", foto: "assets/responsables/johan-toro.png" },
+  {
+    nombre: "Francisco Gallo",
+    rol: "Soluciones basadas en naturaleza y restauración ecológica",
+    ubicacion: "",
+    foto: "assets/responsables/francisco-gallo.png",
+    bio: "Administrador Ambiental, Explorador de National Geographic y Dr. Arquitecto (Cum Laude) por la Euskal Herriko Unibertsitatea. Con suficiencia investigadora en Asentamientos Humanos y Actividades Económicas (doctorado en Geografía e Historia-UNED); Magíster en Cooperación Internacional para el Desarrollo en el Sistema de Naciones Unidas (2006-7). Por más de 20 años ha implementado soluciones basadas en naturaleza y restauración ecológica.",
+  },
+  {
+    nombre: "Margarita Noreña",
+    rol: "Coordinación de Logística / Salud Pública y Asistencia Integral",
+    ubicacion: "Pereira",
+    foto: "assets/responsables/margarita-norena.png",
+    bio: "Administradora Ambiental de la Universidad Tecnológica de Pereira, especialista en Análisis de Política Pública y magíster en Estudios Culturales y Narrativas Contemporáneas. Su trayectoria está vinculada a la gestión de proyectos ambientales y sociales, el trabajo con comunidades y la articulación entre territorios, instituciones, academia y organizaciones.",
+  },
+  {
+    nombre: "Sara Arenas",
+    rol: "Coordinación de Logística / Nodo Chocó y Risaralda",
+    ubicacion: "Pereira",
+    foto: "assets/responsables/sara-arenas.png",
+    bio: "El enfoque principal en mi proceso profesional ha sido orientado como investigadora y gestora, especialmente en el sector rural, comunitario y académico desde la aproximación cultural e interdisciplinaria al reconocimiento de los procesos ambientales. Como gestora de procesos de desarrollo, he sido parte de procesos de planificación ambiental y divulgación del conocimiento para fortalecer la concepción del ambiente y el territorio como un patrimonio y un derecho social. Actualmente, soy docente acompañante en el pregrado de Administración Ambiental de la Universidad Tecnológica de Pereira, en la Alcaldía de San José, Caldas, y me encuentro finalizando mis estudios de maestría en Gestión del Riesgo de Desastres, los cuales he enfocado en los conflictos de gestión del riesgo en la comunidad de Carmelo, Chocó.",
+  },
+  {
+    nombre: "Stefanía Giraldo",
+    rol: "Coordinación de Logística",
+    ubicacion: "Pereira",
+    foto: "assets/responsables/stefania-giraldo.png",
+    bio: "Administradora Ambiental y Especialista en Prevención, Reducción y Atención de Desastres, con 7 años de experiencia en gestión del riesgo de desastres en entidades de orden municipal y nacional. Aporta elementos técnicos y experiencia en gestión del riesgo, y es enlace entre la institucionalidad y la comunidad.",
+  },
+  { nombre: "Luciana González", rol: "Nodo Pereira — Olla Comunitaria Las Weras", ubicacion: "Pereira", foto: "assets/responsables/luciana-gonzalez.png" },
+  { nombre: "Andrés Cardona", rol: "Nodo Norte del Valle y Pereira", ubicacion: "Cartago", foto: "assets/responsables/andres-cardona.png" },
+  { nombre: "Marta Ochoa", rol: "Articulación interinstitucional y comunitaria / EDAN", ubicacion: "Bogotá", foto: "assets/responsables/marta-ochoa.png" },
+  {
+    nombre: "Paula Ramírez",
+    rol: "Salud Mental y Apoyo Psicosocial (SMAPS)",
+    ubicacion: "Argentina",
+    foto: "assets/responsables/paula-ramirez.png",
+    bio: "Administradora Ambiental y Especialista en Gestión Ambiental (UTP). Candidata a magíster en Desarrollo Sustentable UNLu–FLACAM. Radicada en Argentina. Tiene experiencia en gestión pública y proyectos estratégicos de sustentabilidad, gestión hídrica, cambio climático y desarrollo territorial, con foco en gestión del agua, riesgo hídrico, restauración fluvial, participación comunitaria e incorporación de la perspectiva de género. Es promotora activa de la igualdad de género y la sustentabilidad ambiental, vinculada a redes como Mujeres en Diálogo Ambiental y el Movimiento Basura Cero en Argentina.",
+  },
+  { nombre: "Mario Arenas", rol: "Sistematización de proveedores locales", ubicacion: "", foto: "assets/responsables/mario-arenas.png" },
+  { nombre: "Juan Sierra", rol: "Sistematización de proveedores locales", ubicacion: "", foto: "assets/responsables/juan-sierra.png" },
+  {
+    nombre: "Jenny Velásquez",
+    rol: "Evaluación de Daños y Análisis de Necesidades (EDAN)",
+    ubicacion: "Cali",
+    foto: "assets/responsables/jenny-velazquez.png",
+    bio: "Profesional en Administración Ambiental, Especialista en Gerencia Ambiental y Desarrollo Sostenible Empresarial, y Magíster en Energías Renovables. Cuenta con 14 años de experiencia específica en factibilidad ambiental de proyectos del sector eléctrico, con énfasis en la construcción y desarrollo de proyectos con Fuentes No Convencionales de Energía Renovable (FNCER).",
+  },
+];

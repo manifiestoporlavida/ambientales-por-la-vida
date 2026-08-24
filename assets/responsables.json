@@ -1,0 +1,13 @@
+[
+  { "nombre": "Johan Toro", "rol": "Coordinación general — Logística de Asistencia y Albergue", "ubicacion": "México", "foto": "assets/responsables/johan-toro.png" },
+  { "nombre": "Margarita Noreña", "rol": "Coordinación de Logística / Salud Pública y Asistencia Integral", "ubicacion": "Pereira", "foto": "assets/responsables/margarita-norena.png" },
+  { "nombre": "Sara Arenas", "rol": "Coordinación de Logística / Nodo Chocó y Risaralda", "ubicacion": "Pereira", "foto": "assets/responsables/sara-arenas.png", "bio": "El enfoque principal en mi proceso profesional ha sido orientado como investigadora y gestora, especialmente en el sector rural, comunitario y académico desde la aproximación cultural e interdisciplinaria al reconocimiento de los procesos ambientales. Como gestora de procesos de desarrollo, he sido parte de procesos de planificación ambiental y divulgación del conocimiento para fortalecer la concepción del ambiente y el territorio como un patrimonio y un derecho social. Actualmente, soy docente acompañante en el pregrado de Administración Ambiental de la Universidad Tecnológica de Pereira, en la Alcaldía de San José, Caldas, y me encuentro finalizando mis estudios de maestría en Gestión del Riesgo de Desastres, los cuales he enfocado en los conflictos de gestión del riesgo en la comunidad de Carmelo, Chocó." },
+  { "nombre": "Stefanía Giraldo", "rol": "Coordinación de Logística", "ubicacion": "Pereira", "foto": "assets/responsables/stefania-giraldo.png" },
+  { "nombre": "Luciana González", "rol": "Nodo Pereira — Olla Comunitaria Las Weras", "ubicacion": "Pereira", "foto": "assets/responsables/luciana-gonzalez.png" },
+  { "nombre": "Andrés Cardona", "rol": "Nodo Norte del Valle y Pereira", "ubicacion": "Cartago", "foto": "assets/responsables/andres-cardona.png" },
+  { "nombre": "Marta Ochoa", "rol": "Articulación interinstitucional y comunitaria / EDAN", "ubicacion": "Bogotá", "foto": "assets/responsables/marta-ochoa.png" },
+  { "nombre": "Paula Ramírez", "rol": "Salud Mental y Apoyo Psicosocial (SMAPS)", "ubicacion": "Argentina", "foto": "assets/responsables/paula-ramirez.png" },
+  { "nombre": "Mario Arenas", "rol": "Sistematización de proveedores locales", "ubicacion": "", "foto": "assets/responsables/mario-arenas.png" },
+  { "nombre": "Juan Sierra", "rol": "Sistematización de proveedores locales", "ubicacion": "", "foto": "assets/responsables/juan-sierra.png" },
+  { "nombre": "Jenny Velázquez", "rol": "Evaluación de Daños y Análisis de Necesidades (EDAN)", "ubicacion": "Cali", "foto": "assets/responsables/jenny-velazquez.png" }
+]
