@@ -63,12 +63,19 @@ function safeComprobanteHref(url) {
   return typeof url === "string" && url.startsWith("https://") ? url : null;
 }
 
+function isValidOperacion(op) {
+  // El endpoint a veces arrastra filas con errores de fórmula (#REF!) de la
+  // planilla — solo son operaciones reales las que tienen fecha e id válidos.
+  return op && /^\d{4}-\d{2}-\d{2}/.test(String(op.fecha)) && (op.tipo === "INGRESO" || op.tipo === "EGRESO");
+}
+
 function renderOperationsTable(data, filter = "TODAS") {
   const tbody = document.getElementById("ops-tbody");
   if (!tbody) return;
   tbody.textContent = "";
 
   const ops = data.operaciones
+    .filter(isValidOperacion)
     .filter((op) => filter === "TODAS" || op.tipo === filter)
     .slice()
     .sort((a, b) => b.fecha.localeCompare(a.fecha));
@@ -217,12 +224,19 @@ function initRevealOnScroll() {
   targets.forEach((t) => io.observe(t));
 }
 
+function isValidEntrega(entrega) {
+  // El endpoint a veces arrastra filas basura de la planilla (errores #REF!,
+  // encabezados de otra tabla) dentro de entregas_detalle — solo son entregas
+  // reales las que tienen el prefijo de id esperado.
+  return entrega && typeof entrega === "object" && typeof entrega.id === "string" && entrega.id.startsWith("ENT-");
+}
+
 function renderDeliveries(data) {
   const empty = document.getElementById("deliveries-empty");
   const list = document.getElementById("deliveries-list");
   if (!empty || !list) return;
 
-  const entregas = data.entregas_detalle || [];
+  const entregas = (data.entregas_detalle || []).filter(isValidEntrega);
   list.textContent = "";
 
   if (!entregas.length) {
@@ -235,7 +249,36 @@ function renderDeliveries(data) {
   list.hidden = false;
   entregas.forEach((entrega) => {
     const li = document.createElement("li");
-    li.textContent = typeof entrega === "string" ? entrega : JSON.stringify(entrega);
+
+    const title = document.createElement("p");
+    title.className = "delivery-title";
+    title.textContent = entrega.descripcion || entrega.tipo_de_ayuda || "Entrega";
+    li.appendChild(title);
+
+    const meta = document.createElement("p");
+    meta.className = "delivery-meta";
+    const parts = [];
+    if (entrega.fecha) {
+      const [y, m, d] = String(entrega.fecha).split("-");
+      parts.push(y && m && d ? `${d}/${m}/${y}` : entrega.fecha);
+    }
+    if (entrega.localidad) parts.push(entrega.localidad);
+    if (entrega.cantidad) parts.push(`${entrega.cantidad} ${entrega.unidad || ""}`.trim());
+    if (entrega.beneficiarios) parts.push(`${entrega.beneficiarios} personas beneficiadas`);
+    meta.textContent = parts.join(" · ");
+    li.appendChild(meta);
+
+    const href = safeComprobanteHref(entrega.evidencia);
+    if (href) {
+      const a = document.createElement("a");
+      a.href = href;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.className = "comprobante";
+      a.textContent = "Ver evidencia";
+      li.appendChild(a);
+    }
+
     list.appendChild(li);
   });
 }

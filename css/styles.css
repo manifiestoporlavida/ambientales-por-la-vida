@@ -782,6 +782,18 @@ table.ops-table {
   border-radius: var(--radius);
   color: var(--ink-soft);
 }
+.deliveries-list .delivery-title {
+  font-weight: 600;
+  color: var(--dark);
+  margin: 0 0 0.3em;
+}
+.deliveries-list .delivery-meta {
+  font-size: var(--step--1);
+  margin: 0 0 0.4em;
+}
+.deliveries-list .comprobante {
+  font-size: var(--step--1);
+}
 
 /* ============================================================
    7. SOBRE LA RED

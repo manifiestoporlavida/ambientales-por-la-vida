@@ -33,7 +33,7 @@ function renderCategoryChart(data) {
   if (!canvas || typeof Chart === "undefined") return;
   destroyChartOn(canvas);
 
-  const egresos = data.operaciones.filter((op) => op.tipo === "EGRESO");
+  const egresos = data.operaciones.filter(isValidOperacion).filter((op) => op.tipo === "EGRESO");
   const porCategoria = {};
   egresos.forEach((op) => {
     porCategoria[op.categoria] = (porCategoria[op.categoria] || 0) + op.importe;
@@ -81,6 +81,7 @@ function renderTimelineChart(data) {
   canvas.hidden = false;
 
   const ingresos = data.operaciones
+    .filter(isValidOperacion)
     .filter((op) => op.tipo === "INGRESO" && op.tipo_recurso === "MONETARIO")
     .slice()
     .sort((a, b) => a.fecha.localeCompare(b.fecha));
