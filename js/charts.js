@@ -1,6 +1,6 @@
 // Construye los gráficos y la barra recaudado/utilizado a partir de un objeto de datos
 // con la forma exacta del endpoint (BRIEF §3.2). Recibe los datos ya procesados —
-// no sabe de dónde vienen (EXAMPLE_DATA hoy, fetch real en fase 2).
+// no sabe de dónde vienen (fetch real vía js/api.js).
 
 // Categorías de egreso vigentes tras la reforma de agosto 2026 (BRIEF §3.2).
 const CATEGORY_COLORS = {
@@ -13,6 +13,8 @@ const CATEGORY_COLORS = {
   "ALOJAMIENTO TEMPORAL": "#8a5814",
   COMUNICACION: "#3f5c2c",
   "AYUDA ECONOMICA DIRECTA": "#F3F6F1",
+  ROPA: "#a8763f",
+  "PAP APOYO EMOCIONAL": "#4f7a94",
   OTROS: "#9c9c9c",
 };
 
@@ -20,9 +22,16 @@ function formatCOP(n) {
   return new Intl.NumberFormat("es-CO", { maximumFractionDigits: 0 }).format(n);
 }
 
+function destroyChartOn(canvas) {
+  if (!canvas || typeof Chart === "undefined") return;
+  const existing = Chart.getChart(canvas);
+  if (existing) existing.destroy();
+}
+
 function renderCategoryChart(data) {
   const canvas = document.getElementById("chart-categorias");
   if (!canvas || typeof Chart === "undefined") return;
+  destroyChartOn(canvas);
 
   const egresos = data.operaciones.filter((op) => op.tipo === "EGRESO");
   const porCategoria = {};
@@ -68,15 +77,15 @@ function renderTimelineChart(data) {
   const canvas = document.getElementById("chart-tiempo");
   const note = document.getElementById("chart-tiempo-note");
   if (!canvas) return;
+  destroyChartOn(canvas);
+  canvas.hidden = false;
 
   const ingresos = data.operaciones
     .filter((op) => op.tipo === "INGRESO" && op.tipo_recurso === "MONETARIO")
     .slice()
     .sort((a, b) => a.fecha.localeCompare(b.fecha));
 
-  if (ingresos.length < 3) {
-    if (note) note.hidden = false;
-  }
+  if (note) note.hidden = ingresos.length >= 3;
   if (!ingresos.length || typeof Chart === "undefined") {
     canvas.hidden = true;
     return;

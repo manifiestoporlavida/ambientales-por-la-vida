@@ -1,5 +1,11 @@
-// Orquesta la página. Fase 1 (esqueleto estático): usa EXAMPLE_DATA directamente.
-// Fase 2 reemplaza renderAll(EXAMPLE_DATA) por el resultado de api.js fetchTransparencyData().
+// Orquesta la página. Los datos de transparencia vienen del fetch real al endpoint
+// (js/api.js) con cache en localStorage para carga instantánea (stale-while-revalidate).
+
+function clearLoadingState() {
+  document.querySelectorAll(".is-loading").forEach((el) => el.classList.remove("is-loading"));
+  const loadingRow = document.getElementById("ops-loading-row");
+  if (loadingRow) loadingRow.remove();
+}
 
 function renderStats(data) {
   const set = (id, val) => {
@@ -15,11 +21,42 @@ function renderStats(data) {
   set("stat-beneficiarios", data.beneficiarios);
 
   const fecha = document.getElementById("ultima-actualizacion");
-  if (fecha && data.ultima_actualizacion) {
-    const [y, m, d] = data.ultima_actualizacion.split("-");
-    fecha.textContent = `${d}/${m}/${y}`;
-    fecha.setAttribute("datetime", data.ultima_actualizacion);
+  const badgeText = document.getElementById("updated-badge-text");
+  const isoDate = resolveUltimaActualizacion(data);
+  if (isoDate) {
+    const [y, m, d] = isoDate.split("-");
+    const formatted = `${d}/${m}/${y}`;
+    if (badgeText) {
+      badgeText.textContent = "";
+      const label = document.createTextNode("Actualizado el ");
+      const time = document.createElement("time");
+      time.id = "ultima-actualizacion";
+      time.textContent = formatted;
+      time.setAttribute("datetime", data.ultima_actualizacion);
+      badgeText.appendChild(label);
+      badgeText.appendChild(time);
+    } else if (fecha) {
+      fecha.textContent = formatted;
+      fecha.setAttribute("datetime", isoDate);
+    }
   }
+}
+
+// El campo ultima_actualizacion a veces llega malformado desde el endpoint (ej. un
+// número en vez de "YYYY-MM-DD"). Si pasa, caemos a la fecha de "generado" (ISO válido).
+function resolveUltimaActualizacion(data) {
+  if (typeof data.ultima_actualizacion === "string" && /^\d{4}-\d{2}-\d{2}/.test(data.ultima_actualizacion)) {
+    return data.ultima_actualizacion.slice(0, 10);
+  }
+  if (typeof data.generado === "string" && /^\d{4}-\d{2}-\d{2}/.test(data.generado)) {
+    return data.generado.slice(0, 10);
+  }
+  return null;
+}
+
+function showTransparencyError(show) {
+  const el = document.getElementById("transparencia-error");
+  if (el) el.hidden = !show;
 }
 
 function safeComprobanteHref(url) {
@@ -180,11 +217,66 @@ function initRevealOnScroll() {
   targets.forEach((t) => io.observe(t));
 }
 
+function renderDeliveries(data) {
+  const empty = document.getElementById("deliveries-empty");
+  const list = document.getElementById("deliveries-list");
+  if (!empty || !list) return;
+
+  const entregas = data.entregas_detalle || [];
+  list.textContent = "";
+
+  if (!entregas.length) {
+    empty.hidden = false;
+    list.hidden = true;
+    return;
+  }
+
+  empty.hidden = true;
+  list.hidden = false;
+  entregas.forEach((entrega) => {
+    const li = document.createElement("li");
+    li.textContent = typeof entrega === "string" ? entrega : JSON.stringify(entrega);
+    list.appendChild(li);
+  });
+}
+
 function renderAll(data) {
   renderStats(data);
   renderOperationsTable(data);
   initOpsFilters(data);
   renderCharts(data);
+  renderDeliveries(data);
+  clearLoadingState();
+  showTransparencyError(false);
+}
+
+async function loadTransparencyData() {
+  const cached = readCache();
+  if (cached) {
+    renderAll(cached.data);
+  }
+
+  try {
+    const fresh = await fetchTransparencyData();
+    renderAll(fresh);
+  } catch (err) {
+    console.error("No se pudo obtener los datos de transparencia:", err);
+    if (cached) {
+      // Ya mostramos los datos cacheados — solo avisamos que no se pudo refrescar.
+      clearLoadingState();
+      const badgeText = document.getElementById("updated-badge-text");
+      const badge = document.getElementById("updated-badge");
+      if (badge) badge.classList.add("updated-badge--stale");
+      if (badgeText) {
+        const note = document.createElement("span");
+        note.textContent = " (sin conexión con el sistema en vivo, mostrando la última copia guardada)";
+        badgeText.appendChild(note);
+      }
+    } else {
+      clearLoadingState();
+      showTransparencyError(true);
+    }
+  }
 }
 
 function initNavMenu() {
@@ -241,7 +333,10 @@ function initScrollSpy() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderAll(EXAMPLE_DATA);
+  loadTransparencyData();
+  const retryBtn = document.getElementById("transparencia-retry");
+  if (retryBtn) retryBtn.addEventListener("click", loadTransparencyData);
+
   renderResponsables();
   initRevealOnScroll();
   initNavMenu();

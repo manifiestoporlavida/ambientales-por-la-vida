@@ -98,37 +98,42 @@
       <h2 id="transparencia-h" style="font-size:var(--step-4); text-transform:uppercase; margin-top:0.3em; color:var(--white); max-width:16ch;">Transparencia en vivo</h2>
       <p style="margin-top:1em; max-width:56ch; opacity:0.92;">"Garantizamos trazabilidad total de las donaciones, documentando públicamente el destino de los fondos" — es nuestro compromiso. Estos números vienen directo de nuestra planilla administrativa, no son estáticos.</p>
 
-      <div class="updated-badge" style="margin-top:var(--space-m);">
+      <div class="updated-badge" style="margin-top:var(--space-m);" id="updated-badge">
         <span class="dot" aria-hidden="true"></span>
-        <span>Actualizado el <time id="ultima-actualizacion">19/08/2026</time> — datos de ejemplo, esqueleto v1</span>
+        <span id="updated-badge-text">Cargando datos en vivo…</span>
       </div>
 
-      <div class="stat-hero" style="margin-top:var(--space-m);" id="stat-hero">
+      <p class="transparency-error" id="transparencia-error" hidden>
+        No pudimos actualizar los datos en este momento. Puede ser una demora puntual del sistema administrativo — probá recargar en un minuto.
+        <button type="button" id="transparencia-retry">Reintentar</button>
+      </p>
+
+      <div class="stat-hero is-loading" style="margin-top:var(--space-m);" id="stat-hero">
         <div class="stat-card">
           <p class="eyebrow">Recaudado</p>
-          <p class="num" id="stat-recaudado"><span class="cur">$</span>6.963.287</p>
+          <p class="num" id="stat-recaudado"><span class="skel"></span></p>
         </div>
         <div class="stat-card">
           <p class="eyebrow">Utilizado</p>
-          <p class="num" id="stat-utilizado"><span class="cur">$</span>1.064.622</p>
+          <p class="num" id="stat-utilizado"><span class="skel"></span></p>
         </div>
         <div class="stat-card stat-card--saldo">
           <p class="eyebrow">Saldo disponible</p>
-          <p class="num" id="stat-saldo"><span class="cur">$</span>5.898.665</p>
+          <p class="num" id="stat-saldo"><span class="skel"></span></p>
         </div>
       </div>
 
-      <div class="stat-card stat-card--especie" style="margin-top:var(--space-s);" id="stat-especie-card">
+      <div class="stat-card stat-card--especie is-loading" style="margin-top:var(--space-s);" id="stat-especie-card">
         <p class="eyebrow">Recibido en especie</p>
-        <p class="num" id="stat-especie"><span class="cur">$</span>0</p>
+        <p class="num" id="stat-especie"><span class="skel"></span></p>
         <p class="note-especie">Bienes e insumos donados — no se contabilizan como dinero disponible.</p>
       </div>
 
-      <div class="stat-grid" id="stat-grid">
-        <div class="mini-stat"><p class="num" id="stat-donaciones">7</p><p class="label">Donaciones</p></div>
-        <div class="mini-stat"><p class="num" id="stat-gastos">6</p><p class="label">Gastos</p></div>
-        <div class="mini-stat"><p class="num" id="stat-entregas">0</p><p class="label">Entregas</p></div>
-        <div class="mini-stat"><p class="num" id="stat-beneficiarios">0</p><p class="label">Personas alcanzadas</p></div>
+      <div class="stat-grid is-loading" id="stat-grid">
+        <div class="mini-stat"><p class="num" id="stat-donaciones"><span class="skel"></span></p><p class="label">Donaciones</p></div>
+        <div class="mini-stat"><p class="num" id="stat-gastos"><span class="skel"></span></p><p class="label">Gastos</p></div>
+        <div class="mini-stat"><p class="num" id="stat-entregas"><span class="skel"></span></p><p class="label">Entregas</p></div>
+        <div class="mini-stat"><p class="num" id="stat-beneficiarios"><span class="skel"></span></p><p class="label">Personas alcanzadas</p></div>
       </div>
 
       <div class="chart-grid">
@@ -139,10 +144,10 @@
         <div class="chart-card">
           <h3>Recaudado vs. utilizado</h3>
           <div class="progress-bar" role="img" aria-label="Barra de progreso: proporción utilizada del total recaudado">
-            <div class="progress-bar__fill" id="progress-fill" style="width:15%"></div>
+            <div class="progress-bar__fill" id="progress-fill" style="width:0%"></div>
           </div>
           <div class="progress-legend">
-            <span>Utilizado: <span id="progress-pct">15%</span></span>
+            <span>Utilizado: <span id="progress-pct">—</span></span>
             <span>Saldo disponible</span>
           </div>
           <h3 style="margin-top:var(--space-m);">Recaudación acumulada</h3>
@@ -153,12 +158,12 @@
 
       <div class="chart-card impact-card" style="margin-top:var(--space-m);">
         <h3>¿A quién ayudamos?</h3>
-        <div class="impact-grid" id="impact-grid">
-          <div class="mini-stat"><p class="num" id="stat-mujeres">0</p><p class="label">Mujeres</p></div>
-          <div class="mini-stat"><p class="num" id="stat-infancias">0</p><p class="label">Infancias</p></div>
-          <div class="mini-stat"><p class="num" id="stat-diversidades">0</p><p class="label">Diversidades</p></div>
-          <div class="mini-stat"><p class="num" id="stat-varones">0</p><p class="label">Varones</p></div>
-          <div class="mini-stat mini-stat--animales"><p class="num" id="stat-animales">0</p><p class="label">Animales</p></div>
+        <div class="impact-grid is-loading" id="impact-grid">
+          <div class="mini-stat"><p class="num" id="stat-mujeres"><span class="skel"></span></p><p class="label">Mujeres</p></div>
+          <div class="mini-stat"><p class="num" id="stat-infancias"><span class="skel"></span></p><p class="label">Infancias</p></div>
+          <div class="mini-stat"><p class="num" id="stat-diversidades"><span class="skel"></span></p><p class="label">Diversidades</p></div>
+          <div class="mini-stat"><p class="num" id="stat-varones"><span class="skel"></span></p><p class="label">Varones</p></div>
+          <div class="mini-stat mini-stat--animales"><p class="num" id="stat-animales"><span class="skel"></span></p><p class="label">Animales</p></div>
         </div>
         <p class="chart-empty-note" id="impact-empty-note" hidden>Todavía no hay datos de impacto cargados — apenas se verifiquen entregas o gastos, van a aparecer acá.</p>
 
@@ -286,7 +291,8 @@
             </tr>
           </thead>
           <tbody id="ops-tbody">
-            <!-- filas generadas por js/app.js a partir de datos de ejemplo -->
+            <!-- filas generadas por js/app.js a partir del fetch al endpoint -->
+            <tr id="ops-loading-row"><td colspan="6" class="ops-loading">Cargando operaciones…</td></tr>
           </tbody>
         </table>
       </div>
@@ -294,6 +300,7 @@
       <div class="deliveries-empty" id="deliveries-empty">
         Todavía no se registraron entregas — apenas haya, van a aparecer acá.
       </div>
+      <ul class="deliveries-list" id="deliveries-list" hidden></ul>
     </div>
   </section>
 
@@ -419,7 +426,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous"></script>
 <script src="js/config.js"></script>
-<script src="js/data-example.js"></script>
+<script src="js/api.js"></script>
 <script src="js/responsables.js"></script>
 <script src="js/charts.js"></script>
 <script src="js/app.js"></script>
