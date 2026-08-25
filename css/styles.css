@@ -699,6 +699,65 @@ table.impact-table {
   opacity: 0.8;
 }
 
+.payment-methods {
+  margin-top: var(--space-m);
+  display: grid;
+  gap: var(--space-m);
+}
+.payment-method__label {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  margin-bottom: var(--space-xs);
+}
+.bank-details {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: var(--radius);
+  padding: var(--space-s) var(--space-m);
+  display: grid;
+  gap: 0.55em;
+}
+.bank-details > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-s);
+  flex-wrap: wrap;
+}
+.bank-details dt {
+  font-size: var(--step--1);
+  opacity: 0.75;
+}
+.bank-details dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  text-align: right;
+}
+.vaki-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: var(--space-m);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-s);
+}
+.vaki-card__logo {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  display: block;
+}
+.vaki-card__cta {
+  margin-top: 0;
+  width: 100%;
+  text-align: center;
+}
+
 /* ============================================================
    6. OPERACIONES VERIFICADAS
    ============================================================ */
@@ -988,6 +1047,30 @@ blockquote.pull-quote cite {
 }
 .social-btn svg { width: 18px; height: 18px; }
 .social-btn:hover { background: var(--orange); border-color: var(--orange); color: var(--dark); }
+
+.hero__social {
+  margin-top: var(--space-l);
+  padding-top: var(--space-m);
+  border-top: 1px solid rgba(243,246,241,0.18);
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  flex-wrap: wrap;
+}
+.hero__social-label {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+}
+.hero__social-icons { display: flex; gap: 0.7em; }
+.social-btn--lg {
+  width: 48px; height: 48px;
+  background: rgba(243,246,241,0.1);
+  border-color: rgba(243,246,241,0.3);
+}
+.social-btn--lg svg { width: 22px; height: 22px; }
 .footer-bottom {
   margin-top: var(--space-l);
   padding-top: var(--space-m);
