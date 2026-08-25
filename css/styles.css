@@ -891,6 +891,57 @@ table.ops-table {
   color: var(--on-dark);
 }
 /* ============================================================
+   7b. BROCHURE
+   ============================================================ */
+.brochure__grid {
+  display: grid;
+  gap: var(--space-l);
+  align-items: center;
+}
+@media (min-width: 860px) {
+  .brochure__grid { grid-template-columns: minmax(260px, 380px) 1fr; }
+}
+.brochure__cover {
+  position: relative;
+  max-width: 340px;
+  margin-inline: auto;
+  transform: rotate(-3deg);
+  transition: transform 0.25s ease;
+}
+.brochure__cover:hover { transform: rotate(0deg); }
+.brochure__cover img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 24px 48px -16px rgba(32, 61, 44, 0.45), 0 4px 12px rgba(32, 61, 44, 0.15);
+  border: 1px solid rgba(32, 61, 44, 0.08);
+}
+.brochure__tag {
+  position: absolute;
+  right: -0.75em;
+  bottom: -0.9em;
+  background: var(--dark);
+  color: var(--on-dark);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+  padding: 0.5em 0.9em;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(32, 61, 44, 0.3);
+  white-space: nowrap;
+}
+.brochure__cta {
+  margin-top: var(--space-m);
+}
+.brochure__cta svg { width: 20px; height: 20px; }
+.brochure__note {
+  margin-top: var(--space-s);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  opacity: 0.8;
+}
+
+/* ============================================================
    8. RESPONSABLES — carrusel
    ============================================================ */
 .responsables-head {
