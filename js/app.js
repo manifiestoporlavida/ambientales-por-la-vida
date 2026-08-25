@@ -145,69 +145,105 @@ function initOpsFilters(data) {
   });
 }
 
+function buildResponsableCard(p, isDuplicate) {
+  const li = document.createElement("li");
+  li.className = "responsable-card";
+  if (isDuplicate) li.setAttribute("aria-hidden", "true");
+
+  const photo = document.createElement("div");
+  photo.className = "photo";
+  const img = document.createElement("img");
+  img.src = p.foto;
+  img.alt = p.nombre;
+  img.loading = "lazy";
+  photo.appendChild(img);
+  li.appendChild(photo);
+
+  const h4 = document.createElement("h4");
+  h4.textContent = p.nombre;
+  li.appendChild(h4);
+
+  if (p.ubicacion) {
+    const loc = document.createElement("p");
+    loc.className = "loc";
+    loc.textContent = p.ubicacion;
+    li.appendChild(loc);
+  }
+
+  if (p.bio) {
+    const bio = document.createElement("p");
+    bio.className = "bio";
+    bio.textContent = p.bio;
+    bio.hidden = true;
+    li.appendChild(bio);
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "bio-toggle";
+    toggle.textContent = "Ver la trayectoria";
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.addEventListener("click", () => {
+      const expanded = toggle.getAttribute("aria-expanded") === "true";
+      bio.hidden = expanded;
+      toggle.setAttribute("aria-expanded", String(!expanded));
+      toggle.textContent = expanded ? "Ver la trayectoria" : "Ocultar la trayectoria";
+    });
+    if (isDuplicate) toggle.tabIndex = -1;
+    li.appendChild(toggle);
+  }
+
+  return li;
+}
+
 function renderResponsables() {
   const track = document.getElementById("responsables-track");
   if (!track) return;
   track.textContent = "";
 
-  RESPONSABLES.forEach((p) => {
-    const li = document.createElement("li");
-    li.className = "responsable-card";
-
-    const photo = document.createElement("div");
-    photo.className = "photo";
-    const img = document.createElement("img");
-    img.src = p.foto;
-    img.alt = p.nombre;
-    img.loading = "lazy";
-    photo.appendChild(img);
-    li.appendChild(photo);
-
-    const h4 = document.createElement("h4");
-    h4.textContent = p.nombre;
-    li.appendChild(h4);
-
-    const role = document.createElement("p");
-    role.className = "role";
-    role.textContent = p.rol;
-    li.appendChild(role);
-
-    if (p.ubicacion) {
-      const loc = document.createElement("p");
-      loc.className = "loc";
-      loc.textContent = p.ubicacion;
-      li.appendChild(loc);
-    }
-
-    if (p.bio) {
-      const bio = document.createElement("p");
-      bio.className = "bio";
-      bio.textContent = p.bio;
-      bio.hidden = true;
-      li.appendChild(bio);
-
-      const toggle = document.createElement("button");
-      toggle.type = "button";
-      toggle.className = "bio-toggle";
-      toggle.textContent = "Ver trayectoria";
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.addEventListener("click", () => {
-        const expanded = toggle.getAttribute("aria-expanded") === "true";
-        bio.hidden = expanded;
-        toggle.setAttribute("aria-expanded", String(!expanded));
-        toggle.textContent = expanded ? "Ver trayectoria" : "Ocultar trayectoria";
-      });
-      li.appendChild(toggle);
-    }
-
-    track.appendChild(li);
-  });
+  // Se duplica el set de tarjetas para poder hacer un scroll horizontal
+  // infinito: al llegar a la mitad del recorrido se reinicia sin salto visible.
+  RESPONSABLES.forEach((p) => track.appendChild(buildResponsableCard(p, false)));
+  RESPONSABLES.forEach((p) => track.appendChild(buildResponsableCard(p, true)));
 
   const prev = document.getElementById("carousel-prev");
   const next = document.getElementById("carousel-next");
   const scrollBy = () => track.clientWidth * 0.7;
-  if (prev) prev.addEventListener("click", () => track.scrollBy({ left: -scrollBy(), behavior: "smooth" }));
-  if (next) next.addEventListener("click", () => track.scrollBy({ left: scrollBy(), behavior: "smooth" }));
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let autoScrollPaused = false;
+  let resumeTimer = null;
+  const pauseAutoScroll = () => {
+    autoScrollPaused = true;
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => { autoScrollPaused = false; }, 4000);
+  };
+
+  if (prev) prev.addEventListener("click", () => { pauseAutoScroll(); track.scrollBy({ left: -scrollBy(), behavior: "smooth" }); });
+  if (next) next.addEventListener("click", () => { pauseAutoScroll(); track.scrollBy({ left: scrollBy(), behavior: "smooth" }); });
+
+  if (reducedMotion) return;
+
+  ["pointerdown", "wheel", "touchstart"].forEach((evt) => {
+    track.addEventListener(evt, pauseAutoScroll, { passive: true });
+  });
+  track.addEventListener("mouseenter", () => { autoScrollPaused = true; });
+  track.addEventListener("mouseleave", () => { clearTimeout(resumeTimer); autoScrollPaused = false; });
+  track.addEventListener("focusin", () => { autoScrollPaused = true; });
+  track.addEventListener("focusout", () => { autoScrollPaused = false; });
+
+  const SPEED_PX_PER_FRAME = 0.6;
+  const halfWidth = () => track.scrollWidth / 2;
+
+  const step = () => {
+    if (!autoScrollPaused) {
+      track.scrollLeft += SPEED_PX_PER_FRAME;
+      if (track.scrollLeft >= halfWidth()) {
+        track.scrollLeft -= halfWidth();
+      }
+    }
+    requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
 }
 
 function initRevealOnScroll() {

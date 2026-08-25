@@ -857,13 +857,6 @@ table.ops-table {
 /* ============================================================
    7. SOBRE LA RED
    ============================================================ */
-.about__grid {
-  display: grid;
-  gap: var(--space-l);
-}
-@media (min-width: 860px) {
-  .about__grid { grid-template-columns: 1fr 1fr; }
-}
 .about-values {
   display: grid;
   gap: var(--space-s);
@@ -897,27 +890,6 @@ table.ops-table {
   text-decoration: underline;
   color: var(--on-dark);
 }
-blockquote.pull-quote {
-  margin: 0;
-  padding: var(--space-m);
-  background: var(--mint);
-  border-radius: var(--radius);
-  font-family: var(--font-display);
-  font-size: var(--step-2);
-  text-transform: uppercase;
-  color: var(--dark);
-  line-height: 1.2;
-}
-blockquote.pull-quote cite {
-  display: block;
-  margin-top: var(--space-s);
-  font-family: var(--font-mono);
-  font-style: normal;
-  text-transform: none;
-  font-size: var(--step--1);
-  opacity: 0.7;
-}
-
 /* ============================================================
    8. RESPONSABLES — carrusel
    ============================================================ */
@@ -945,7 +917,6 @@ blockquote.pull-quote cite {
   display: flex;
   gap: var(--space-m);
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   padding: var(--space-m) 2px var(--space-s);
   margin-top: var(--space-m);
   scrollbar-width: thin;
@@ -955,7 +926,6 @@ blockquote.pull-quote cite {
 .responsable-card {
   flex: 0 0 auto;
   width: min(260px, 72vw);
-  scroll-snap-align: start;
   text-align: center;
 }
 .responsable-card .photo {
@@ -971,11 +941,6 @@ blockquote.pull-quote cite {
   font-size: var(--step-0);
   text-transform: uppercase;
   color: var(--dark);
-}
-.responsable-card .role {
-  font-size: var(--step--1);
-  color: var(--ink-soft);
-  margin-top: 0.2em;
 }
 .responsable-card .loc {
   font-family: var(--font-mono);
