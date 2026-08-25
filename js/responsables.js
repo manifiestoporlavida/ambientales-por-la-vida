@@ -29,9 +29,21 @@ const RESPONSABLES = [
     foto: "assets/responsables/stefania-giraldo.png",
     bio: "Administradora Ambiental y Especialista en Prevención, Reducción y Atención de Desastres, con 7 años de experiencia en gestión del riesgo de desastres en entidades de orden municipal y nacional. Aporta elementos técnicos y experiencia en gestión del riesgo, y es enlace entre la institucionalidad y la comunidad.",
   },
-  { nombre: "Luciana González", rol: "Nodo Pereira — Olla Comunitaria Las Weras", ubicacion: "Pereira", foto: "assets/responsables/luciana-gonzalez.png" },
+  {
+    nombre: "Luciana González",
+    rol: "Nodo Pereira — Olla Comunitaria Las Weras",
+    ubicacion: "Pereira",
+    foto: "assets/responsables/luciana-gonzalez.png",
+    bio: "Administradora Ambiental. Gestión ambiental, proyectos y trabajo comunitario para la vida y los territorios. En Ambientales por la Vida construyo puentes entre la academia y la comunidad, integrando gestión ambiental, capacidad organizativa y trabajo colectivo para fortalecer territorios y promover soluciones sostenibles.",
+  },
   { nombre: "Andrés Cardona", rol: "Nodo Norte del Valle y Pereira", ubicacion: "Cartago", foto: "assets/responsables/andres-cardona.png" },
-  { nombre: "Marta Ochoa", rol: "Articulación interinstitucional y comunitaria / EDAN", ubicacion: "Bogotá", foto: "assets/responsables/marta-ochoa.png" },
+  {
+    nombre: "Marta Ochoa",
+    rol: "Articulación interinstitucional y comunitaria / EDAN",
+    ubicacion: "Bogotá",
+    foto: "assets/responsables/marta-ochoa.png",
+    bio: "Administradora Ambiental y especialista en gestión ambiental de la Universidad Tecnológica de Pereira, con estudios en mercados y políticas de suelo y candidata a magíster en Estudios Críticos de las Migraciones Contemporáneas de la Pontificia Universidad Javeriana. Durante más de 18 años su experiencia profesional ha estado focalizada en la gestión del riesgo de desastres y la adaptación al cambio climático en entidades del orden nacional, donde ha contribuido a la formulación de políticas públicas e instrumentos de gestión del riesgo y de adaptación al cambio climático, como el Plan Nacional de Gestión del Riesgo de Desastres 2015-2025, adoptado por Decreto 308 de 2016.",
+  },
   {
     nombre: "Paula Ramírez",
     rol: "Salud Mental y Apoyo Psicosocial (SMAPS)",
