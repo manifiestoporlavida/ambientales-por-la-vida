@@ -1,6 +1,12 @@
 // Roster de responsables — contenido propio de la landing, no viene del endpoint (BRIEF §2.3).
 const RESPONSABLES = [
-  { nombre: "Johan Toro", rol: "Coordinación general — Logística de Asistencia y Albergue", ubicacion: "México", foto: "assets/responsables/johan-toro.png" },
+  {
+    nombre: "Johan Toro",
+    rol: "Coordinación general — Logística de Asistencia y Albergue",
+    ubicacion: "México",
+    foto: "assets/responsables/johan-toro.png",
+    bio: "Especialista en Gestión Integral de Riesgos y Resiliencia Urbana, Administrador Ambiental, Maestro en Población y Desarrollo por FLACSO México y candidato a Doctor en Estudios de Población por El Colegio de México, con una trayectoria enfocada en vulnerabilidad social, construcción social del riesgo, territorio y resiliencia. Es fundador y director operativo de Genera Territorios A.C., organización orientada al fortalecimiento de capacidades y la articulación de iniciativas para el desarrollo territorial sostenible, la autonomía económica y la regeneración socioambiental. Su experiencia combina investigación aplicada, análisis territorial y diseño de instrumentos para la reducción del riesgo y la resiliencia. Actualmente se desempeña como Coordinador de Políticas de Resiliencia de la Ciudad de México.",
+  },
   {
     nombre: "Francisco Gallo",
     rol: "Soluciones basadas en naturaleza y restauración ecológica",
@@ -51,8 +57,21 @@ const RESPONSABLES = [
     foto: "assets/responsables/paula-ramirez.png",
     bio: "Administradora Ambiental y Especialista en Gestión Ambiental (UTP). Candidata a magíster en Desarrollo Sustentable UNLu–FLACAM. Radicada en Argentina. Tiene experiencia en gestión pública y proyectos estratégicos de sustentabilidad, gestión hídrica, cambio climático y desarrollo territorial, con foco en gestión del agua, riesgo hídrico, restauración fluvial, participación comunitaria e incorporación de la perspectiva de género. Es promotora activa de la igualdad de género y la sustentabilidad ambiental, vinculada a redes como Mujeres en Diálogo Ambiental y el Movimiento Basura Cero en Argentina.",
   },
-  { nombre: "Mario Arenas", rol: "Sistematización de proveedores locales", ubicacion: "", foto: "assets/responsables/mario-arenas.png" },
+  {
+    nombre: "Mario Arenas",
+    rol: "Sistematización de proveedores locales",
+    ubicacion: "",
+    foto: "assets/responsables/mario-arenas.png",
+    bio: "Administrador del Medio Ambiente, Especialista en Gestión Ambiental Local y Magíster en Desarrollo Regional y Planificación del Territorio. Mi experiencia se concentra en planificación urbana y regional, ordenamiento territorial, gestión ambiental, movilidad activa y sostenible, acción climática, y formulación de proyectos y políticas públicas. He trabajado con entidades públicas, academia, cooperación y organizaciones ciudadanas, articulando conocimiento técnico, gestión y visión territorial para impulsar ciudades y territorios más sostenibles, resilientes y habitables.",
+  },
   { nombre: "Juan Sierra", rol: "Sistematización de proveedores locales", ubicacion: "", foto: "assets/responsables/juan-sierra.png" },
+  {
+    nombre: "Juliana Muñoz",
+    rol: "Planificación ambiental del territorio y servicios ecosistémicos",
+    ubicacion: "",
+    foto: "assets/responsables/juliana-munoz.png",
+    bio: "Administradora Ambiental y Magíster en Ciencias Ambientales con experiencia en docencia, investigación y planificación ambiental del territorio, específicamente en Planes de Ordenamiento de Cuencas Hidrográficas (POMCAs) y planes de manejo de áreas protegidas. He sido investigadora en escenarios rurales relacionados con la valoración integral de servicios ecosistémicos y la generación de estrategias de adaptación y mitigación al cambio climático desde los sistemas productivos. He acompañado procesos comunitarios en torno a la caracterización del patrimonio natural y cultural y el desarrollo de metodologías de participación social.",
+  },
   {
     nombre: "Jenny Velásquez",
     rol: "Evaluación de Daños y Análisis de Necesidades (EDAN)",
