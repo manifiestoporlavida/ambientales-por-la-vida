@@ -10,7 +10,7 @@ const RESPONSABLES = [
   {
     nombre: "Francisco Gallo",
     rol: "Soluciones basadas en naturaleza y restauración ecológica",
-    ubicacion: "",
+    ubicacion: "Pereira",
     foto: "assets/responsables/francisco-gallo.png",
     bio: "Administrador Ambiental, Explorador de National Geographic y Dr. Arquitecto (Cum Laude) por la Euskal Herriko Unibertsitatea. Con suficiencia investigadora en Asentamientos Humanos y Actividades Económicas (doctorado en Geografía e Historia-UNED); Magíster en Cooperación Internacional para el Desarrollo en el Sistema de Naciones Unidas (2006-7). Por más de 20 años ha implementado soluciones basadas en naturaleza y restauración ecológica.",
   },
@@ -60,7 +60,7 @@ const RESPONSABLES = [
   {
     nombre: "Mario Arenas",
     rol: "Sistematización de proveedores locales",
-    ubicacion: "",
+    ubicacion: "Pereira",
     foto: "assets/responsables/mario-arenas.png",
     bio: "Administrador del Medio Ambiente, Especialista en Gestión Ambiental Local y Magíster en Desarrollo Regional y Planificación del Territorio. Mi experiencia se concentra en planificación urbana y regional, ordenamiento territorial, gestión ambiental, movilidad activa y sostenible, acción climática, y formulación de proyectos y políticas públicas. He trabajado con entidades públicas, academia, cooperación y organizaciones ciudadanas, articulando conocimiento técnico, gestión y visión territorial para impulsar ciudades y territorios más sostenibles, resilientes y habitables.",
   },
