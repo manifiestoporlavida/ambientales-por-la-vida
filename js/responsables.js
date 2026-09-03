@@ -79,4 +79,18 @@ const RESPONSABLES = [
     foto: "assets/responsables/jenny-velazquez.png",
     bio: "Profesional en Administración Ambiental, Especialista en Gerencia Ambiental y Desarrollo Sostenible Empresarial, y Magíster en Energías Renovables. Cuenta con 14 años de experiencia específica en factibilidad ambiental de proyectos del sector eléctrico, con énfasis en la construcción y desarrollo de proyectos con Fuentes No Convencionales de Energía Renovable (FNCER).",
   },
+  {
+    nombre: "Felipe Chica",
+    rol: "Gestión del riesgo de desastres y Eco-Reducción del Riesgo",
+    ubicacion: "Pereira",
+    foto: "assets/responsables/felipe-chico.png",
+    bio: "Administrador ambiental con trayectoria en gestión del riesgo de desastres y Eco-Reducción del Riesgo, desde la política pública hasta la práctica en terreno. He acompañado procesos de fortalecimiento de capacidades comunitarias en varios territorios junto a UNICEF y el Ministerio de Educación donde el enfoque de niñez ha sido esencial para la gestión del riesgo.",
+  },
+  {
+    nombre: "Ryan Howard Therán",
+    rol: "Educación ambiental y planificación de la gestión del riesgo",
+    ubicacion: "Pereira",
+    foto: "assets/responsables/ryan-howard-theran.png",
+    bio: "Administrador Ambiental y candidato a Mágister en Gestión del Riesgo de Desastres. Cuento con una trayectoria de 14 años en docencia escolar en niveles de primaria y secundaria, desde donde he impulsado procesos de educación ambiental. Mi trabajo se centra en el acompañamiento e intervención con comunidades, integrando saberes locales con metodologías en procesos de planificación de la gestión del riesgo.",
+  },
 ];
